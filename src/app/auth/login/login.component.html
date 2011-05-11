@@ -1,0 +1,38 @@
+<div class="login-container">
+    <mat-card>
+        <mat-card-header class="login-header">
+          LOGO
+        </mat-card-header>
+        <mat-card-content class="login-content">
+          <form class="example-form" [formGroup]="form" >
+            <mat-form-field class="login-form-field">
+              <input matInput placeholder="Email" formControlName="email"
+                     [errorStateMatcher]="matcher" type="email" [email]="true">
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="!form.controls.email.valid">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="login-form-field">
+              <input matInput placeholder="Password" formControlName="password"
+                     [errorStateMatcher]="matcher" type="password">
+              <mat-hint></mat-hint>
+              <mat-error *ngIf="!form.controls.password.valid && !form.controls.password.hasError('minlength')">
+                password is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="!form.controls.password.valid && form.controls.password.hasError('minlength')">
+                 more than 6 characters <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+
+            <div class="btn-container">
+              <button mat-raised-button  color="primary" class="full-btn"[class.allowed]="form.valid " (click)="submit()">login</button>
+            </div>
+          </form>
+        </mat-card-content>
+        <!-- <mat-card-footer>
+            footer
+        </mat-card-footer> -->
+    </mat-card>
+</div>

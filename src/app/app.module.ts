@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -16,6 +19,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { CardComponent } from './ui/card/card.component';
 import { TableComponent } from './ui/table/table.component';
 import { ChartModule } from 'angular-highcharts';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -28,12 +32,14 @@ import { ChartModule } from 'angular-highcharts';
     ClientsComponent,
     SettingsComponent,
     CardComponent,
-    TableComponent
+    TableComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
+    AuthModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -46,9 +52,10 @@ import { ChartModule } from 'angular-highcharts';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    ChartModule
+    ChartModule,
+    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule
   ],
-  providers: [],
+  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

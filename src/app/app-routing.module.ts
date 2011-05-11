@@ -10,14 +10,15 @@ file 'LICENSE.txt', which is part of this source code package.
 import { NgModule} from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 // import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-// import { LoginGuardService } from './auth/guard/login-guard.service';
+import { LoginGuardService } from './auth/guard/login-guard.service';
+import { LoginComponent } from './auth/login/login.component'
 import { HomepageComponent, ImportsComponent, EquipementsComponent,  ClientsComponent, SettingsComponent} from './pages';
 
 
 const routes: Routes = [
   {
     path: '',
-    // canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService],
     children: [{
       path: '',
       component: HomepageComponent,
@@ -45,6 +46,11 @@ const routes: Routes = [
     path: 'settings',
     // canActivate: [LoginGuardService],
     component: SettingsComponent
+  },
+  {
+    path: 'login',
+    // canActivate: [LoginGuardService],
+    component: LoginComponent
   },
   // { path: '**', component: PageNotFoundComponent }
 
