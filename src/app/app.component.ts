@@ -10,7 +10,6 @@ export class AppComponent {
   public navOpen :boolean = false;
 
   public navToggle(){
-    console.log('kkk')
     if(this.navOpen == true){
       this.navOpen = false
     }else{

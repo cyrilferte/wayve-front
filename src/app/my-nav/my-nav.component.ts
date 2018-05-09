@@ -14,7 +14,6 @@ export class MyNavComponent {
   constructor(private breakpointObserver: BreakpointObserver) {}
 
   public onToggle(){
-    console.log('nik')
     this.navToggle.emit('toggle')
   }
 }
