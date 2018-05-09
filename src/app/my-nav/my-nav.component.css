@@ -1,0 +1,25 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+.close-menu{
+  position: absolute;
+  right: 10px;
+}
+.min-nav-container, ::ng-deep .mat-drawer-content{
+  width: 50px;
+  position: fixed;
+}
+.icons-nav p{
+  font-size: 12px;
+  font-weight: 200;
+  font-family: 'Roboto';
+  margin-left:10px;
+}
+.hamburger-menu{
+  margin: 16px;
+}

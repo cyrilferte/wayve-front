@@ -1,0 +1,8 @@
+.body-page{
+  width: calc(100vw - 50px);
+  margin-left: 50px;
+}
+.open{
+  width: calc(100vw - 200px);
+  margin-left: 200px;
+}
