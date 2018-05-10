@@ -1,3 +1,20 @@
-<p>
-  homepage works!
-</p>
+<div class="dash-container">
+  <mat-card class="park-management-card">
+    <mat-card-title class="park-management-card-top" >Gestion des parcs</mat-card-title>
+    <mat-card-content class="park-management-card-content">
+      <h2>tout les parcs</h2>
+      <p>Parc 1</p>
+      <p>Parc 2</p>
+    </mat-card-content>
+    <mat-card-footer class="park-management-card-footer">
+      <button mat-raised-button color="primary">Primary</button>
+    </mat-card-footer>
+  </mat-card>
+
+
+  <div class="card-container">
+    <ui-card *ngFor="let card of cards" [card]="card"></ui-card>
+  </div>
+</div>
+
+<ui-table></ui-table>

@@ -1,6 +1,7 @@
 .body-page{
   width: calc(100vw - 50px);
   margin-left: 50px;
+  /*overflow-x: hidden;*/
 }
 .open{
   width: calc(100vw - 200px);

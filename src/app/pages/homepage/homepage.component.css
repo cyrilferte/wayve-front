@@ -1,0 +1,44 @@
+.card-container{
+  display: flex;
+  flex: 3;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: calc(278px * 3);
+}
+.park-management-card{
+  height: 300px;
+  width: 200px;
+  min-width: 200px;
+  max-width: 200px;
+  flex: 1;
+  margin: auto 50px;
+  overflow: hidden;
+}
+.dash-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin:30px;
+}
+ .park-management-card-top{
+   background-color: #e4eef6;
+   width: 250px;
+    position: absolute;
+    text-align: center;
+    left: 0;
+    top: 0;
+    height: 40px;
+    padding-top: 10px;
+
+ }
+ .park-management-card-content{
+   margin-top: 50px;
+ }
+ .park-management-card-footer{
+   margin: 30px auto;
+   text-align: center;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   left: 0;
+
+ }

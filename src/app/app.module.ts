@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyTableComponent } from './my-table/my-table.component';
 import { MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyNavComponent } from './my-nav/my-nav.component';
@@ -14,18 +13,22 @@ import { ImportsComponent } from './pages/imports/imports.component';
 import { EquipementsComponent } from './pages/equipements/equipements.component';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { CardComponent } from './ui/card/card.component';
+import { TableComponent } from './ui/table/table.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyTableComponent,
     MyDashboardComponent,
     MyNavComponent,
     HomepageComponent,
     ImportsComponent,
     EquipementsComponent,
     ClientsComponent,
-    SettingsComponent
+    SettingsComponent,
+    CardComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { SettingsComponent } from './pages/settings/settings.component';
     LayoutModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
