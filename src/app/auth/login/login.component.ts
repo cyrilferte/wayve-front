@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { UserService } from './../user/user.service';
+
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -9,6 +11,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
+
+
 
 
 @Component({
@@ -39,9 +43,14 @@ export class LoginComponent  {
 
  matcher = new MyErrorStateMatcher();
 
-  constructor(public errorStateMatcher:ErrorStateMatcher, public formBuilder: FormBuilder) { }
+  constructor(public errorStateMatcher:ErrorStateMatcher, public formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit() {
+  }
+  submit(){
+    console.log('nikt', this.form.value.email, this.form.value.password);
+    this.userService.login(this.form.value.email, this.form.value.password);
+
   }
 
 }

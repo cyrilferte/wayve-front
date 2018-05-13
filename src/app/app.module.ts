@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import {ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { Interceptor } from './request.interceptor';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +21,7 @@ import { CardComponent } from './ui/card/card.component';
 import { TableComponent } from './ui/table/table.component';
 import { ChartModule } from 'angular-highcharts';
 import { AuthModule } from './auth/auth.module';
+import { GraphQLModule } from "./graphql.module";
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { AuthModule } from './auth/auth.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    GraphQLModule,
     AuthModule,
     MatTableModule,
     MatPaginatorModule,
@@ -55,7 +58,16 @@ import { AuthModule } from './auth/auth.module';
     ChartModule,
     FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule
   ],
-  providers: [{provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}],
+  providers: [
+    {
+      provide: ErrorStateMatcher,
+      useClass: ShowOnDirtyErrorStateMatcher
+    }, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

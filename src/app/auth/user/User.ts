@@ -1,9 +1,8 @@
 
 export default class User {
 
-  public id = '';
-  public avatar = '';
-  public name = '';
+  public email = '';
+  public password = '';
   public isLogged = false;
 
 

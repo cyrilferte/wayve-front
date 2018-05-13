@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthRoutingModule } from './auth-routing.module';
-import {UserService} from './user/user.service';
+import { UserService } from './user/user.service';
+import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import {LoginGuardService} from './guard/login-guard.service';
 import {LogoutGuardService} from './guard/logout-guard.service';
@@ -21,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginGuardService,
     LogoutGuardService,
     UserService,
+    AuthService,
 
   ]
 })
