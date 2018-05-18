@@ -3,20 +3,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { ValveModel } from '../../pages/models/valve.model';
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: ValveModel[] = [
-  {id: '1', name: 'Hydrogen', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '2', name: 'Helium', type: 'v2', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '3', name: 'Lithium', type: 'v2', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '4', name: 'Beryllium', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '5', name: 'Boron', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '6', name: 'Carbon', type: 'v3', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '7', name: 'Nitrogen', type: 'v3', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '8', name: 'Oxygen', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '9', name: 'Fluorine', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-  {id: '10', name: 'Neon', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
-];
+import { ValveService } from './../../pages/services/valve.service';
 
 /**
  * Data source for the Table view. This class should
@@ -24,9 +11,8 @@ const EXAMPLE_DATA: ValveModel[] = [
  * (including sorting, pagination, and filtering).
  */
 export class TableDataSource extends DataSource<ValveModel> {
-  data: ValveModel[] = EXAMPLE_DATA;
-
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  data: ValveModel[] = this.valveService.valveList;
+  constructor(private paginator: MatPaginator, private sort: MatSort, public valveService: ValveService) {
     super();
   }
 

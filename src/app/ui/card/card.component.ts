@@ -8,7 +8,7 @@ import { Chart } from 'angular-highcharts';
 })
 export class CardComponent implements OnInit {
   @Input() public card;
-  chart = new Chart(<any>{
+  public chart = new Chart(<any>{
       chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -25,23 +25,9 @@ export class CardComponent implements OnInit {
         enabled: false
       },
       series: [{
-        name: 'Brands',
+        name: 'valve type',
         colorByPoint: true,
-        data: [{
-            name: 'Chrome',
-            y: 55,
-            sliced: true,
-            selected: true
-        }, {
-            name: 'Internet Explorer',
-            y: 35
-        }, {
-            name: 'Firefox',
-            y: 15
-        }, {
-            name: 'Other',
-            y: 5
-        }]
+        data: []
     }]
     });
 
@@ -52,6 +38,31 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (this.card.content === 'pieChart' && this.card.data){
+      let types_list = this.sortValveType(this.card.data);
+      this.generateChart(types_list, this.card.data.length);
+
+    }
+  }
+
+  public sortValveType(valve_data){
+    let types = [];
+
+    for (let valve of valve_data){
+         types[valve.type] = types[valve.type] ? types[valve.type] + 1 : 1;
+    }
+
+
+    return types
+  }
+
+  public generateChart(types_list, total_valve){
+    let data = [];
+    for (let valve_type in types_list){
+      data.push({name: valve_type, y: types_list[valve_type]/total_valve})
+    }
+    this.chart.options.series[0].data = data
+
   }
 
 }

@@ -18,7 +18,7 @@ import { HomepageComponent, ImportsComponent, EquipementsComponent,  ClientsComp
 const routes: Routes = [
   {
     path: '',
-    canActivate: [LoginGuardService],
+    // canActivate: [LoginGuardService],
     children: [{
       path: '',
       component: HomepageComponent,

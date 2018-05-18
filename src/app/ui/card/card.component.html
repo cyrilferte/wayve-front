@@ -11,8 +11,8 @@
     </mat-card-title>
   </mat-card-header> -->
   <mat-card-content class="dashboard-card-content">
-    <div *ngIf="card.content != 'camembert'">{{card.content}}</div>
-    <div *ngIf="card.content == 'camembert'" [chart]="chart" class="card-pie-chart"></div>
+    <div *ngIf="card.content != 'pieChart'">{{card.content}}</div>
+    <div *ngIf="card.content == 'pieChart'" [chart]="chart" class="card-pie-chart"></div>
   </mat-card-content>
   <mat-card-footer class="footer-ui-card">
     {{card.title}}
