@@ -1,0 +1,55 @@
+<mat-tab-group>
+  <mat-tab label="Détails">
+    <div class="detail-container">
+      <div class="card-container">
+        <ui-card *ngFor="let card of detail_cards" [card]="card"></ui-card>
+      </div>
+      <mat-card class="valve-management-card">
+        <mat-card-title class="valve-management-card-top" >Gestion des parcs</mat-card-title>
+        <mat-card-content class="valve-management-card-content">
+          <h2>tout les parcs</h2>
+          <p>Parc 1</p>
+          <p>Parc 2</p>
+        </mat-card-content>
+        <mat-card-footer class="valve-management-card-footer">
+          <button mat-raised-button color="primary">Primary</button>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+    <ui-table></ui-table>
+  </mat-tab>
+  <mat-tab label="Historique">
+    <mat-card class="valve-management-card">
+      <mat-card-title class="valve-management-card-top" >Gestion des parcs</mat-card-title>
+      <mat-card-content class="valve-management-card-content">
+        <h2>tout les parcs</h2>
+        <p>Parc 1</p>
+        <p>Parc 2</p>
+      </mat-card-content>
+      <mat-card-footer class="valve-management-card-footer">
+        <button mat-raised-button color="primary">Primary</button>
+      </mat-card-footer>
+    </mat-card>
+    <ui-table></ui-table>
+  </mat-tab>
+  <mat-tab label="Actions">
+    <div class="detail-container">
+      <div class="card-container">
+        <ui-card *ngFor="let card of action_cards" [card]="card"></ui-card>
+      </div>
+      <mat-card class="valve-management-card">
+        <mat-card-title class="valve-management-card-top" >Gestion des parcs</mat-card-title>
+        <mat-card-content class="valve-management-card-content">
+          <h2>tout les parcs</h2>
+          <p>Parc 1</p>
+          <p>Parc 2</p>
+        </mat-card-content>
+        <mat-card-footer class="valve-management-card-footer">
+          <button mat-raised-button color="primary">Primary</button>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    <ui-table></ui-table>
+  </mat-tab>
+</mat-tab-group>

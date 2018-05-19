@@ -12,7 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 // import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginGuardService } from './auth/guard/login-guard.service';
 import { LoginComponent } from './auth/login/login.component'
-import { HomepageComponent, ImportsComponent, EquipementsComponent,  ClientsComponent, SettingsComponent} from './pages';
+import { HomepageComponent, ImportsComponent, EquipementsComponent,  ClientsComponent, SettingsComponent, ValveComponent} from './pages';
 
 
 const routes: Routes = [
@@ -51,6 +51,11 @@ const routes: Routes = [
     path: 'login',
     // canActivate: [LoginGuardService],
     component: LoginComponent
+  },
+  {
+    path: 'valve',
+    // canActivate: [LoginGuardService],
+    component: ValveComponent
   },
   // { path: '**', component: PageNotFoundComponent }
 

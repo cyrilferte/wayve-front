@@ -7,7 +7,7 @@ import { Interceptor } from './request.interceptor';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatTabsModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyNavComponent } from './my-nav/my-nav.component';
@@ -22,6 +22,7 @@ import { TableComponent } from './ui/table/table.component';
 import { ChartModule } from 'angular-highcharts';
 import { AuthModule } from './auth/auth.module';
 import { GraphQLModule } from "./graphql.module";
+import { ValveComponent } from './pages/valve/valve.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { GraphQLModule } from "./graphql.module";
     SettingsComponent,
     CardComponent,
     TableComponent,
+    ValveComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,13 +58,14 @@ import { GraphQLModule } from "./graphql.module";
     MatSidenavModule,
     MatListModule,
     ChartModule,
-    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule
+    FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
+    MatTabsModule,
   ],
   providers: [
     {
       provide: ErrorStateMatcher,
       useClass: ShowOnDirtyErrorStateMatcher
-    }, 
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
