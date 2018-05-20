@@ -20,7 +20,7 @@ export class ValveComponent implements OnInit {
   public action_cards:any = [
     {title: 'Action envoyer', content: 'Ouvert', content2: 'Auto' },
     {title: 'Actions restante', content: '98', icon: 'battery', unit: '%' },
-    {title: 'état actuel', type: 'triple' content: '34 658', unit: 'L' },
+    {title: 'état actuel', type: 'triple', content: '34 658', unit: 'L' },
     {title: "Action à programmer", content: '16,5', unit: '°C', content2: '21,5' },
   ]
 
