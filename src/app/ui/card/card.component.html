@@ -11,8 +11,23 @@
     </mat-card-title>
   </mat-card-header> -->
   <mat-card-content class="dashboard-card-content">
-    <div *ngIf="card.content != 'pieChart'">{{card.content}}</div>
-    <div *ngIf="card.content == 'pieChart'" [chart]="chart" class="card-pie-chart"></div>
+    <div *ngIf="!card.type" [class.add-details]="card.details">
+      <mat-icon  *ngIf="card.icon">{{card.icon}}</mat-icon>
+      {{card.content}}
+      <ng-container *ngIf="card.unit">{{card.unit}}</ng-container>
+      <p *ngIf="card.details" class="details">{{card.details}}</p>
+    </div>
+    <div *ngIf="card.type == 'pieChart'" [chart]="chart" class="card-pie-chart"></div>
+    <div *ngIf="card.type == 'double-top'"  class="card-double-top">
+        <p class="title">{{card.content1}}</p>
+        <p>{{card.value1}}  <ng-container *ngIf="card.unit">{{card.unit}}</ng-container></p>
+        <p class="title">{{card.content2}}</p>
+        <p>{{card.value2}}  <ng-container *ngIf="card.unit">{{card.unit}}</ng-container></p>
+    </div>
+    <div *ngIf="card.type == 'single-top'"  class="card-single-top">
+        <p class="title">{{card.content1}}</p>
+        <p>{{card.value1}}  <ng-container *ngIf="card.unit">{{card.unit}}</ng-container></p>
+    </div>
   </mat-card-content>
   <mat-card-footer class="footer-ui-card">
     {{card.title}}

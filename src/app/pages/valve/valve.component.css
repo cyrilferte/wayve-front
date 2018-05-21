@@ -21,3 +21,8 @@
   margin: auto 50px;
   overflow: hidden;
 }
+.valve-chart-card{
+  max-width: 90%;
+  overflow: hidden;
+  margin: auto;
+}

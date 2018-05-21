@@ -17,7 +17,9 @@
       </mat-card>
 
     </div>
-    <ui-table></ui-table>
+    <mat-card class="valve-chart-card">
+    <div [chart]="chart" class="line-chart"></div>
+    </mat-card>
   </mat-tab>
   <mat-tab label="Historique">
     <mat-card class="valve-management-card">

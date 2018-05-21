@@ -1,7 +1,7 @@
 
 .ui-card {
   margin:15px;
-  max-width: 250px;
+  max-width: 200px;
   min-width: 200px;
   min-height: 100px;
   flex: 1;
@@ -34,4 +34,23 @@
 }
 .ui-card{
   background-color: #e4eef6;
+}
+p.title{
+  font-size: 16px;
+  margin: 0;
+}
+
+p{
+  margin: 0;
+  font-size: 28px;
+}
+.card-double-top{
+  margin-top: -40px;
+}
+.add-details{
+    margin-top: -20px;
+}
+.details{
+  font-size: 14px;
+
 }
