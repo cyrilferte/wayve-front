@@ -11,9 +11,13 @@ import { ValveService } from './../../pages/services/valve.service';
  * (including sorting, pagination, and filtering).
  */
 export class TableDataSource extends DataSource<ValveModel> {
-  data: ValveModel[] = this.valveService.valveList;
-  constructor(private paginator: MatPaginator, private sort: MatSort, public valveService: ValveService) {
+
+  data: ValveModel[] ;
+  constructor(private paginator: MatPaginator, private sort: MatSort, public valveService: ValveService, public table: any) {
     super();
+    if (this.table){
+      this.data = this.table
+    }
   }
 
   /**
