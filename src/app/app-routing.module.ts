@@ -57,6 +57,10 @@ const routes: Routes = [
     // canActivate: [LoginGuardService],
     component: ValveComponent
   },
+  {
+    path: 'valve/:id',
+    component: ValveComponent
+  },
   // { path: '**', component: PageNotFoundComponent }
 
 ];

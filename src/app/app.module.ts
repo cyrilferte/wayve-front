@@ -7,7 +7,7 @@ import { Interceptor } from './request.interceptor';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatTabsModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatSortModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatFormFieldModule, MatInputModule, MatTabsModule, MatAutocompleteModule, MatSlideToggleModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyNavComponent } from './my-nav/my-nav.component';
@@ -60,6 +60,7 @@ import { ValveComponent } from './pages/valve/valve.component';
     ChartModule,
     FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule,
     MatTabsModule,
+    MatAutocompleteModule, MatSlideToggleModule
   ],
   providers: [
     {
