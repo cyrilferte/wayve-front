@@ -4,6 +4,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   max-width: calc(278px * 3);
+  justify-content: space-between;
 }
 .park-management-card{
   height: 300px;

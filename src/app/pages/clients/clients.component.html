@@ -1,1 +1,22 @@
-<ui-table [table]="historic" ></ui-table>  
+<mat-card class="client-list-container">
+  <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding class="node-list">
+      <button mat-icon-button disabled></button>
+      <p class="p-node-list node-list-last">{{node.filename}} : {{node.type}}</p>
+    </mat-tree-node>
+
+    <mat-tree-node *matTreeNodeDef="let node;when: hasChild"  matTreeNodePadding class="node-list">
+      <button mat-icon-button matTreeNodeToggle
+              [attr.aria-label]="'toggle ' + node.filename">
+        <mat-icon class="mat-icon-rtl-mirror">
+          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+        </mat-icon>
+      </button>
+      <div class="node-item-container">
+          <div class="avatar">{{node.filename.substring(0, 1).toUpperCase()}}</div>
+          <p class="p-node-list">{{node.filename}}   </p>
+      </div>
+      <mat-divider class="divider"  [ngStyle]="{'margin-left': node.level * 40 + 'px', 'width': 'calc(100% - ' + node.level * 80  + 'px)'}" matTreeNodePadding></mat-divider>
+    </mat-tree-node>
+  </mat-tree>
+</mat-card>

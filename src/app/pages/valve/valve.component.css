@@ -10,6 +10,7 @@
   flex: 3;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .valve-management-card{
@@ -25,4 +26,34 @@
   max-width: 90%;
   overflow: hidden;
   margin: auto;
+}
+
+.footer-ui-card{
+  background-color: #e4eef6;
+  position: absolute;
+  height: 30px;
+  padding-top:5px;
+  bottom: 23px;
+  width: 100%;
+  text-align: center;
+}
+.valve-actions-card {
+  text-align: center;
+}
+.valve-actions-card form{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:center;
+  text-align: center;
+}
+.valid-btn{
+  text-align: center;
+
+  margin: 30px auto;
+}
+.valve-actions-card ::ng-deep .mat-form-field-infix{
+  width: 100px;
+}
+.flex-interne-card{
+  margin: auto 10px;
 }

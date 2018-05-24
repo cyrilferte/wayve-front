@@ -54,3 +54,16 @@ p{
   font-size: 14px;
 
 }
+
+.card-triple-card{
+  display: flex;
+  flex-direction: row;
+}
+.flex-interne-card{
+  flex: 1;
+}
+.ui-card .dashboard-card-content .card-triple-card{
+  max-width: none;
+  margin-top: -20px;
+}
+.card-single-top{margin-top: -10px;}

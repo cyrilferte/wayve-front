@@ -28,6 +28,20 @@
         <p class="title">{{card.content1}}</p>
         <p>{{card.value1}}  <ng-container *ngIf="card.unit">{{card.unit}}</ng-container></p>
     </div>
+    <div *ngIf="card.type == 'triple-card'"  class="card-triple-card">
+        <div class="flex-interne-card">
+          <p class="title">{{card.content1}}</p>
+          <p>{{card.value1}}  <ng-container *ngIf="card.unit">{{card.unit}}</ng-container></p>
+        </div>
+        <div class="flex-interne-card">
+          <p class="title">{{card.content2}}</p>
+          <p>{{card.value2}}  <ng-container *ngIf="card.unit">{{card.unit}}</ng-container></p>
+        </div>
+        <div class="flex-interne-card">
+          <p class="title">{{card.content3}}</p>
+          <p>{{card.value3}}  <ng-container *ngIf="card.unit">{{card.unit}}</ng-container></p>
+        </div>
+    </div>
   </mat-card-content>
   <mat-card-footer class="footer-ui-card">
     {{card.title}}

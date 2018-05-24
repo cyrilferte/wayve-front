@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-valve',
@@ -22,8 +23,9 @@ export class ValveComponent implements OnInit {
     {title: 'Actions envoyer', type: 'single-top', content1: 'mois de janvier', value1: '3' },
     {title: 'Actions restante', type: 'single-top', content1: 'mois de janvier', value1: '2' },
     {title: 'état actuel', type: 'triple-card', content1: 'mois actuel', value1: '6', content2: 'nombre total', value2: '16', content3: 'nombre total', value3: '16' },
-    {title: "Action à programmer", content: '16,5', unit: '°C', content2: '21,5' },
-  ]
+    // {title: "Action à programmer", content: '16,5', unit: '°C', content2: '21,5' },
+  ];
+  actionsCtrl:FormControl= new FormControl();;
   chart = new Chart({
     chart: {
       type: 'line'
@@ -41,7 +43,55 @@ export class ValveComponent implements OnInit {
       }
     ]
   });
-
+  public actions =[
+    {
+      name: 'Position',
+      actions:[
+        {value: 'ouvert', viewValue: 'ouvert'},
+        {value: 'semi-ouvert', viewValue: 'semi ouvert'},
+        {value: 'fermer', viewValue: 'fermer'}
+      ]
+    },  {
+        name: 'Mode',
+        actions:[
+          {value: 'manuel', viewValue: 'Manuel'},
+          {value: 'auto', viewValue: 'Automatique'}
+        ]
+      },  {
+          name: 'Liste purge',
+          actions:[
+            {value: '1', viewValue: '1'},
+            {value: '2', viewValue: '2'},
+            {value: '3', viewValue: '3'}
+          ]
+        },  {
+            name: 'Coef purge',
+            actions:[
+              {value: '1', viewValue: '1'},
+              {value: '2', viewValue: '2'},
+              {value: '3', viewValue: '3'}
+            ]
+          },  {
+              name: 'Coef temp',
+              actions:[
+                {value: '1', viewValue: '1'},
+                {value: '2', viewValue: '2'},
+                {value: '3', viewValue: '3'}
+              ]
+            }, {
+              name: 'purge manuelle',
+              actions:[
+                {value: '0', viewValue: 'non'},
+                {value: '1', viewValue: 'oui'},
+              ]
+            },{
+              name: 'Activation forcée',
+              actions:[
+                {value: '0', viewValue: 'non'},
+                {value: '1', viewValue: 'oui'},
+              ]
+            },
+  ];
   public historic =[
     {id: '1', name: 'Hydrogen', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
     {id: '2', name: 'Helium', type: 'v2', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
