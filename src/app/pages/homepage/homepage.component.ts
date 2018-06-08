@@ -44,8 +44,26 @@ export class HomepageComponent implements OnInit {
     console.log(this.valveService.valveList)
 
   }
-  deleteValve(){
-    console.log('nik')
+  deleteValve(valveIdToRemove){
+    console.log('nik', valveIdToRemove);
+    let i =0;
+    for (let valve of this.historic){
+      console.log(i)
+       if(valve.id == valveIdToRemove){
+         this.historic.splice(i,1);
+          console.log('2',this.historic )
+        //  TODO make api call .delete
+          break;
+       }
+       i++
+    }
+  }
+  public editValve(valveIdToRemove){
+    this.redirectToValve(valveIdToRemove);
+  }
+
+  public redirectToValve(id: string){
+    console.log(id)
   }
 
 }

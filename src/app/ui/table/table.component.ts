@@ -28,9 +28,10 @@ export class TableComponent implements OnInit {
   @Input() public table;
   @Input() public searchValve: Boolean = false;
   @Input() public downloadData: Boolean = false;
+  @Input() public showActions: Boolean = false;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'type', 'mode', 'position', 'last_purge_date', 'last_error', 'actions'];
+  displayedColumns = ['id', 'name', 'type', 'mode', 'position', 'last_purge_date', 'last_error', ];
   constructor( public valveService: ValveService, router: Router) {
 
   }
@@ -45,7 +46,9 @@ export class TableComponent implements OnInit {
         map(table => table ? this.filterStates(table) : this.table.slice())
       );
     }
-
+    if (this.showActions){
+      this.displayedColumns.push('actions')
+    }
 
   }
 
@@ -84,6 +87,18 @@ export class TableComponent implements OnInit {
         return str;
     }
 
+    reloadData() {
+      if (this.table){
+
+        this.dataSource = new TableDataSource(this.paginator, this.sort, this.valveService, this.table);
+        this.stateCtrl = new FormControl();
+        this.filteredStates = this.stateCtrl.valueChanges
+        .pipe(
+          startWith(''),
+          map(table => table ? this.filterStates(table) : this.table.slice())
+        );
+      }
+     }
 
     public clickOnEdit(){
 
@@ -93,8 +108,9 @@ export class TableComponent implements OnInit {
 
     }
 
-    public clickOnDelete(){
-      console.log('delete');
-        this.onDelete.emit();
+    public clickOnDelete(id){
+      console.log('delete', id, this.table);
+        this.reloadData();
+        this.onDelete.emit(id);
     }
 }
