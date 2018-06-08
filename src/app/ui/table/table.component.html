@@ -54,6 +54,15 @@
       <mat-cell *matCellDef="let row">{{row.last_error}}</mat-cell>
     </ng-container>
 
+    <ng-container  matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let row" >
+        <!-- <button *ngIf="row.actions.includes('purge')" (click)="clickOnPurge()" mat-button>Purge</button>-->
+        <button *ngIf="row.actions.includes('edit')" (click)="clickOnEdit()" mat-button>Edit</button>
+        <button *ngIf="row.actions.includes('delete')" (click)="clickOnDelete()" mat-button>Delete</button>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

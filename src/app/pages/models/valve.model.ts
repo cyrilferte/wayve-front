@@ -7,4 +7,5 @@ export interface ValveModel {
   last_purge_date?: string;
   last_error?:string;
   clients?:[string];
+  actions?:any[];
 }

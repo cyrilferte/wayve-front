@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { TableDataSource } from './table-datasource';
 import { ValveService } from './../../pages/services/valve.service';
@@ -19,6 +19,9 @@ import { Router } from '@angular/router';
 export class TableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @Output() public onDelete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public onEdit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public onPurge: EventEmitter<any> = new EventEmitter<any>();
   dataSource: TableDataSource;
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
@@ -27,7 +30,7 @@ export class TableComponent implements OnInit {
   @Input() public downloadData: Boolean = false;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'type', 'mode', 'position', 'last_purge_date', 'last_error'];
+  displayedColumns = ['id', 'name', 'type', 'mode', 'position', 'last_purge_date', 'last_error', 'actions'];
   constructor( public valveService: ValveService, router: Router) {
 
   }
@@ -79,5 +82,19 @@ export class TableComponent implements OnInit {
         }
 
         return str;
+    }
+
+
+    public clickOnEdit(){
+
+    }
+
+    public clickOnPurge(){
+
+    }
+
+    public clickOnDelete(){
+      console.log('delete');
+        this.onDelete.emit();
     }
 }
