@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy} from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { TableDataSource } from './table-datasource';
 import { ValveService } from './../../pages/services/valve.service';
@@ -14,11 +14,13 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'ui-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  styleUrls: ['./table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit,  OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  // @ViewChild('app-imports');
   @Output() public onDelete: EventEmitter<any> = new EventEmitter<any>();
   @Output() public onEdit: EventEmitter<any> = new EventEmitter<any>();
   @Output() public onPurge: EventEmitter<any> = new EventEmitter<any>();
@@ -26,18 +28,21 @@ export class TableComponent implements OnInit {
   stateCtrl: FormControl;
   filteredStates: Observable<any[]>;
   @Input() public table;
+  public tempTable;
   @Input() public searchValve: Boolean = false;
   @Input() public downloadData: Boolean = false;
   @Input() public showActions: Boolean = false;
+  @Input() set setItems(value: Array<any>) { console.log('lol') }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'type', 'mode', 'position', 'last_purge_date', 'last_error', ];
-  constructor( public valveService: ValveService, router: Router) {
+  constructor( public valveService: ValveService, router: Router ) {
 
   }
   ngOnInit() {
+    console.log('ttt')
     if (this.table){
-
+      this.tempTable = this.table
       this.dataSource = new TableDataSource(this.paginator, this.sort, this.valveService, this.table);
       this.stateCtrl = new FormControl();
       this.filteredStates = this.stateCtrl.valueChanges
@@ -88,6 +93,7 @@ export class TableComponent implements OnInit {
     }
 
     reloadData() {
+      console.log('nikta')
       if (this.table){
 
         this.dataSource = new TableDataSource(this.paginator, this.sort, this.valveService, this.table);
@@ -113,4 +119,16 @@ export class TableComponent implements OnInit {
         this.reloadData();
         this.onDelete.emit(id);
     }
+
+    ngOnChanges(changes: SimpleChanges) {
+    console.log('changes :', changes);
+    }
+    // ngOnPush() {
+    //   console.log('kjkjkj')
+    // }
+
+    // public ngDoCheck(){
+    //   console.log(this.table, this.dataSource.table);
+    //   // if(this.table != )
+    // }
 }

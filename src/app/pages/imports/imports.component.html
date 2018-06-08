@@ -21,43 +21,47 @@
   </mat-card>
 </div>
 
-<ui-table [table]="historic"></ui-table>
+<ui-table [table]="historic" [setItems]="historic" #table ></ui-table>
 
 <mat-drawer-container class="form-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" >
-    <ng-container *ngIf="shouldRun">
-      <h1>Create valve</h1>
-      <div class="create-valve-form-container">
-        <mat-form-field>
-          <input matInput placeholder="numero">
-        </mat-form-field>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" >
+      <ng-container *ngIf="shouldRun">
+        <h1>Create valve</h1>
+        <div class="create-valve-form-container">
+          <mat-form-field>
+            <input matInput placeholder="numero"  formControlName="number" required>
+          </mat-form-field>
 
-        <mat-form-field>
-          <input matInput placeholder="Nom">
         </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Nom" formControlName="name" required>
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-select placeholder="Type">
-            <mat-option value="option">V1</mat-option>
-            <mat-option value="option">V2</mat-option>
-            <mat-option value="option">V3</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Type" formControlName="type" required>
+              <mat-option value="option">V1</mat-option>
+              <mat-option value="option">V2</mat-option>
+              <mat-option value="option">V3</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-select placeholder="Mode">
-            <mat-option value="option">Auto</mat-option>
-            <mat-option value="option">Manuel</mat-option>
-            <mat-option value="option">Semi manuel</mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Mode" formControlName="mode">
+              <mat-option value="option">Auto</mat-option>
+              <mat-option value="option">Manuel</mat-option>
+              <mat-option value="option">Semi manuel</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field>
-          <textarea matInput placeholder="localisation"></textarea>
-        </mat-form-field>
-
-      </div>
+          <mat-form-field>
+            <textarea  formControlName="localisation"  matInput placeholder="localisation"></textarea>
+          </mat-form-field>
+          <div >{{form.valid}}</div>
+          <button mat-raised-button color="primary" [disabled]="!form.valid" >Créer</button>
+        </div>
     </ng-container>
+  </form>
   </mat-drawer>
 
 

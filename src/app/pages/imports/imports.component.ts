@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ValveModel } from '../../pages/models/valve.model';
+import { NgForm, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms/src/model';
 @Component({
   selector: 'app-imports',
   templateUrl: './imports.component.html',
@@ -20,32 +22,75 @@ export class ImportsComponent implements OnInit {
   ];
   public shouldRun: boolean = false;
   public   showFiller = false;
-  constructor() { }
+  submitted = false;
+  public   valve:ValveModel;
+  public form: FormGroup;
+ @ViewChild('table') tableau;
+
+
+  constructor(protected formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.initForm();
   }
 
   public changeListener(files: FileList){
-  console.log(files);
+  // console.log(files);
   if(files && files.length > 0) {
      let file : File = files.item(0);
-       console.log(file.name);
-       console.log(file.size);
-       console.log(file.type);
+
        let reader: FileReader = new FileReader();
        reader.readAsText(file);
        reader.onload = (e) => {
           let csv: string = reader.result;
-          console.log(csv);
+          // console.log(csv);
           this.sendCSV(csv)
        }
     }
 }
+protected initForm(): void {
+
+    this.form = this.formBuilder.group({
+
+      number: [
+        '',
+        [Validators.required]
+      ],
+      name: [
+        '',
+        [Validators.required]
+      ],
+      type: [
+        ''
+      ],
+      mode: [
+        null
+      ],
+      localisation: [
+        ''
+      ],
+
+    });
+    // this.valve = this.form;
+  }
 
   public sendCSV(csv){
-    console.log(csv);
+    // console.log(csv);
     this.historic.push({id: '11', name: 'Import', type: 'Import', mode: 'automatique', position: 'ouvert', last_purge_date: Date()})
   }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log('nik', this.form.value)
+
+    //TODO create api request
+
+    console.log('nik', this.historic)
+    this.historic.push(this.form.value)
+    console.log('nik', this.historic)
+    this.tableau.reloadData();
+  }
+
 
 
 }
