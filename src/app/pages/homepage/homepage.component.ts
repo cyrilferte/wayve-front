@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValveService } from './../services/valve.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'app-homepage',
@@ -27,12 +29,15 @@ export class HomepageComponent implements OnInit {
     {id: '9', name: 'Fluorine', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
     {id: '10', name: 'Neon', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
   ];
-  constructor(public valveService: ValveService) {
+  constructor(public valveService: ValveService, private snackbar: MatSnackBar, public viewContainerRef: ViewContainerRef) {
     for (let card of this.cards){
       if (card.content === 'pieChart'){
         card.data = this.valveService.valveList
       }
     }
+    let config = new MatSnackBarConfig();
+    this.snackbar.open('Alerte Vanne n°42', "voir l'erreur", config);
+
    }
 
   ngOnInit() {
