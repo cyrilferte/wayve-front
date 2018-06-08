@@ -11,6 +11,9 @@
     </mat-form-field>
   </form>
 </ng-container>
+<ng-container *ngIf="downloadData" >
+  <button mat-raised-button color="primary" (click)="onDownloadData()">Download</button>
+</ng-container>
 <div class="mat-elevation-z8 margin-30-50">
   <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
