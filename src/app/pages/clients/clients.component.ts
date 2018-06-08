@@ -34,15 +34,18 @@ const TREE_DATA = [{
     "name": "Visian",
     "users": [
            {
-            "name": "cyril",
+            "firstname": "cyril",
+            "lastname": "ferte",
             "core": "ts",
             "compiler": "ts"
           },{
-           "name": "cyril 2",
+            "firstname": "cyril 2",
+            "lastname": "ferte",
            "core": "ts",
            "compiler": "ts"
          },{
-          "name": "cyril 3",
+           "firstname": "cyril 3",
+           "lastname": "ferte",
           "core": "ts",
           "compiler": "ts"
         },
@@ -50,15 +53,18 @@ const TREE_DATA = [{
             "name": "SUBVisian",
             "users": [
                    {
-                    "name": "cyril",
+                     "firstname": "cyril",
+                     "lastname": "ferte",
                     "core": "ts",
                     "compiler": "ts"
                   },{
-                   "name": "cyril 2",
+                    "firstname": "cyril",
+                    "lastname": "ferte",
                    "core": "ts",
                    "compiler": "ts"
                  },{
-                  "name": "cyril 3",
+                   "firstname": "cyril",
+                   "lastname": "ferte",
                   "core": "ts",
                   "compiler": "ts"
                 }
@@ -146,7 +152,7 @@ export class FileDatabase {
       console.log(i)
       i++;
       if (v === null || v === undefined) {
-        // no action
+        // no actionn
       } else if (typeof v === 'object') {
         node.children = this.buildFileTree(v, level + 1);
       } else {
