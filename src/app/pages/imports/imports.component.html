@@ -1,21 +1,64 @@
-<mat-card class="create-valve-card">
-  <mat-card-title class="create-valve-card-top" >Create a valve</mat-card-title>
-  <mat-card-content class="create-valve-card-content">
+<div class="container-cards">
 
-  </mat-card-content>
-  <mat-card-footer class="create-valve-card-footer">
-    <button mat-raised-button color="primary">Primary</button>
-  </mat-card-footer>
-</mat-card>
+  <mat-card class="create-valve-card">
+    <mat-card-title class="create-valve-card-top" >Create a valve</mat-card-title>
+    <mat-card-content class="create-valve-card-content">
 
-<mat-card class="import-valves-card">
-  <mat-card-title class="import-valves-card-top" >import group of valves</mat-card-title>
-  <mat-card-content class="import-valves-card-content">
- CSV
-  </mat-card-content>
-  <mat-card-footer class="import-valves-card-footer">
-    <button mat-raised-button color="primary">Primary</button>
-  </mat-card-footer>
-</mat-card>
+    </mat-card-content>
+    <mat-card-footer class="create-valve-card-footer">
+      <button mat-raised-button color="primary" (click)="shouldRun=true; drawer.toggle()">Create</button>
+    </mat-card-footer>
+  </mat-card>
+
+  <mat-card class="import-valves-card">
+    <mat-card-title class="import-valves-card-top" >import group of valves</mat-card-title>
+    <mat-card-content class="import-valves-card-content">
+    </mat-card-content>
+    <mat-card-footer class="import-valves-card-footer">
+      <label for="input-file-id" class="mat-button mat-raised-button mat-primary">Import CSV</label>
+      <input id="input-file-id" type="file" class="upload" (change)="changeListener($event.target.files)" class="ng-hide">
+    </mat-card-footer>
+  </mat-card>
+</div>
 
 <ui-table [table]="historic"></ui-table>
+
+<mat-drawer-container class="form-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" >
+    <ng-container *ngIf="shouldRun">
+      <h1>Create valve</h1>
+      <div class="create-valve-form-container">
+        <mat-form-field>
+          <input matInput placeholder="numero">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Nom">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Type">
+            <mat-option value="option">V1</mat-option>
+            <mat-option value="option">V2</mat-option>
+            <mat-option value="option">V3</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Mode">
+            <mat-option value="option">Auto</mat-option>
+            <mat-option value="option">Manuel</mat-option>
+            <mat-option value="option">Semi manuel</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput placeholder="localisation"></textarea>
+        </mat-form-field>
+
+      </div>
+    </ng-container>
+  </mat-drawer>
+
+
+</mat-drawer-container>

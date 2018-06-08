@@ -18,9 +18,34 @@ export class ImportsComponent implements OnInit {
     {id: '9', name: 'Fluorine', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
     {id: '10', name: 'Neon', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date()},
   ];
+  public shouldRun: boolean = false;
+  public   showFiller = false;
   constructor() { }
 
   ngOnInit() {
   }
+
+  public changeListener(files: FileList){
+  console.log(files);
+  if(files && files.length > 0) {
+     let file : File = files.item(0);
+       console.log(file.name);
+       console.log(file.size);
+       console.log(file.type);
+       let reader: FileReader = new FileReader();
+       reader.readAsText(file);
+       reader.onload = (e) => {
+          let csv: string = reader.result;
+          console.log(csv);
+          this.sendCSV(csv)
+       }
+    }
+}
+
+  public sendCSV(csv){
+    console.log(csv);
+    this.historic.push({id: '11', name: 'Import', type: 'Import', mode: 'automatique', position: 'ouvert', last_purge_date: Date()})
+  }
+
 
 }
