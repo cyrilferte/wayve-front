@@ -1,8 +1,10 @@
 import {FlatTreeControl} from '@angular/cdk/tree';
-import {Component, Injectable} from '@angular/core';
+import {Component, Injectable, ViewChild} from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {BehaviorSubject, Observable, of as observableOf} from 'rxjs';
-import { ClientModel } from './../models/client.model'
+import { ClientModel } from './../models/client.model';
+import { NgForm, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms/src/model';
 
 /**
  * File node data with nested structure.
@@ -30,22 +32,28 @@ export class FileFlatNode {
 /**
  * The file structure tree data in string. The data could be parsed into a Json object
  */
-const TREE_DATA = [{
+let TREE_DATA = [{
     "name": "Visian",
     "users": [
            {
+            "id": 1,
             "firstname": "cyril",
             "lastname": "ferte",
+            "company": "fertec",
             "core": "ts",
             "compiler": "ts"
           },{
+            "id": 2,
             "firstname": "cyril 2",
             "lastname": "ferte",
+            "company": "fertec",
            "core": "ts",
            "compiler": "ts"
          },{
+           "id": 3,
            "firstname": "cyril 3",
            "lastname": "ferte",
+           "company": "fertec",
           "core": "ts",
           "compiler": "ts"
         },
@@ -55,16 +63,19 @@ const TREE_DATA = [{
                    {
                      "firstname": "cyril",
                      "lastname": "ferte",
+                     "company": "fertec",
                     "core": "ts",
                     "compiler": "ts"
                   },{
                     "firstname": "cyril",
                     "lastname": "ferte",
+                    "company": "fertec",
                    "core": "ts",
                    "compiler": "ts"
                  },{
                    "firstname": "cyril",
                    "lastname": "ferte",
+                   "company": "fertec",
                   "core": "ts",
                   "compiler": "ts"
                 }
@@ -75,15 +86,21 @@ const TREE_DATA = [{
     {"name": "Visian 2",
     "users": [
           {
-           "name": "cyril",
+           "firstname": "cyril",
+           "lastname": "ferte",
+           "company": "fertec",
            "core": "ts",
            "compiler": "ts"
          },{
-          "name": "cyril 2",
+           "firstname": "cyril",
+           "lastname": "ferte",
+           "company": "fertec",
           "core": "ts",
           "compiler": "ts"
         },{
-         "name": "cyril 3",
+          "firstname": "cyril",
+          "lastname": "ferte",
+          "company": "fertec",
          "core": "ts",
          "compiler": "ts"
        }
@@ -91,15 +108,21 @@ const TREE_DATA = [{
     {"name": "Visian 3",
     "users": [
         {
-         "name": "cyril",
+          "firstname": "cyril",
+          "lastname": "ferte",
+          "company": "fertec",
          "core": "ts",
          "compiler": "ts"
        },{
-        "name": "cyril 2",
+         "firstname": "cyril",
+         "lastname": "ferte",
+         "company": "fertec",
         "core": "ts",
         "compiler": "ts"
       },{
-       "name": "cyril 3",
+        "firstname": "cyril",
+        "lastname": "ferte",
+        "company": "fertec",
        "core": "ts",
        "compiler": "ts"
      }
@@ -123,7 +146,8 @@ export class FileDatabase {
     this.initialize();
   }
 
-  initialize() {
+
+  public initialize() {
     // Parse the string to json object.
     const dataObject = TREE_DATA;
 
@@ -141,18 +165,29 @@ export class FileDatabase {
    */
   buildFileTree(value: any, level: number): any[] {
     let data: any[] = [];
-    console.log('value', value);
+    let j = 0;
     for (let k of value) {
+
       let i = 0
-      console.log('k', k);
       let v = k.users;
       let node = new FileNode();
-      node.filename = `${k.name}`;
+      if(k.name) node.filename = `${k.name}`;
+      if(k.firstname) node.firstname = `${k.firstname}`;
+      if(k.lastname) node.lastname = `${k.lastname}`;
+      if(k.company) node.company = `${k.company}`;
+      if(k.holding) node.holding = `${k.holding}`;
+      if(k.phone) node.phone = `${k.phone}`;
+      if(k.address) node.address = `${k.address}`;
+      if(k.email) node.email = `${k.email}`;
+      if(k.nTVA) node.nTVA = `${k.nTVA}`;
+      if(k.id) node.id = `${k.id}`;
       node.index = i;
-      console.log(i)
+      node.j = j;
       i++;
+      j++;
       if (v === null || v === undefined) {
         // no actionn
+
       } else if (typeof v === 'object') {
         node.children = this.buildFileTree(v, level + 1);
       } else {
@@ -192,8 +227,11 @@ export class ClientsComponent  {
 treeFlattener: MatTreeFlattener<FileNode, FileFlatNode>;
 
 dataSource: MatTreeFlatDataSource<FileNode, FileFlatNode>;
-
-constructor(database: FileDatabase) {
+public shouldRun: boolean = false;
+public   showFiller = false;
+submitted = false;
+public form: FormGroup;
+constructor(database: FileDatabase, protected formBuilder: FormBuilder) {
   this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel,
     this._isExpandable, this._getChildren);
   this.treeControl = new FlatTreeControl<FileFlatNode>(this._getLevel, this._isExpandable);
@@ -202,12 +240,55 @@ constructor(database: FileDatabase) {
   database.dataChange.subscribe(data => {
     this.dataSource.data = data;
   });
+  this.initForm();
 }
+
+public deleteClient(node){
+  console.log('nikkk', node.id )
+
+}
+
+protected initForm(): void {
+
+    this.form = this.formBuilder.group({
+
+      number: [
+        '',
+        [Validators.required]
+      ],
+      name: [
+        '',
+        [Validators.required]
+      ],
+      type: [
+        ''
+      ],
+      mode: [
+        null
+      ],
+      localisation: [
+        ''
+      ],
+
+    });
+    // this.valve = this.form;
+  }
+
 
 transformer = (node: FileNode, level: number) => {
   let flatNode = new FileFlatNode();
-  flatNode.filename = node.filename;
+  if(node.filename) flatNode.filename = node.filename;
+  if(node.firstname) flatNode.firstname = node.firstname;
+  if(node.lastname) flatNode.lastname = node.lastname;
+  if(node.company) flatNode.company = node.company;
+  if(node.holding) flatNode.holding = node.holding;
+  if(node.phone) flatNode.phone = node.phone;
+  if(node.address) flatNode.address = node.address;
+  if(node.email) flatNode.email = node.email;
+  if(node.nTVA) flatNode.nTVA = node.nTVA;
+  if(node.id) flatNode.id = node.id;
   flatNode.index = node.index;
+  flatNode.j = node.j;
   flatNode.type = node.type;
   flatNode.level = level;
   flatNode.expandable = !!node.children;
@@ -228,4 +309,19 @@ public trackByFn(index, item) {
   console.log(index, item)
     return index; // or item.id
   }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log('nik', this.form.value)
+
+    //TODO create api request
+
+    console.log('nik', this.historic)
+    this.historic.push(this.form.value)
+    console.log('nik', this.historic)
+
+  }
+
+
+
 }
