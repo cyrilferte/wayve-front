@@ -18,49 +18,37 @@ import { HomepageComponent, ImportsComponent, EquipementsComponent,  ClientsComp
 const routes: Routes = [
   {
     path: '',
-    // canActivate: [LoginGuardService],
+    canActivate: [LoginGuardService],
     children: [{
       path: '',
       component: HomepageComponent,
     }, {
       path : 'home',
       component: HomepageComponent
+    }, {
+      path: 'imports',
+      component: ImportsComponent
+    },
+    {
+      path: 'equipements',
+      component: EquipementsComponent
+    },
+    {
+      path: 'clients',
+      component: ClientsComponent
+    },
+    {
+      path: 'settings',
+      component: SettingsComponent
+    },
+    {
+      path: 'valve',
+      component: ValveComponent
+    },{
+      path: 'valve:id',
+      component: ValveComponent
     }]
-  },
-  {
-    path: 'imports',
-    // canActivate: [LoginGuardService],
-    component: ImportsComponent
-  },
-  {
-    path: 'equipements',
-    // canActivate: [LoginGuardService],
-    component: EquipementsComponent
-  },
-  {
-    path: 'clients',
-    // canActivate: [LoginGuardService],
-    component: ClientsComponent
-  },
-  {
-    path: 'settings',
-    // canActivate: [LoginGuardService],
-    component: SettingsComponent
-  },
-  {
-    path: 'login',
-    // canActivate: [LoginGuardService],
-    component: LoginComponent
-  },
-  {
-    path: 'valve',
-    // canActivate: [LoginGuardService],
-    component: ValveComponent
-  },
-  {
-    path: 'valve/:id',
-    component: ValveComponent
-  },
+  }
   // { path: '**', component: PageNotFoundComponent }
 
 ];

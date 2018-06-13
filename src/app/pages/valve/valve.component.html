@@ -4,7 +4,7 @@
       <div class="card-container">
         <ui-card *ngFor="let card of detail_cards" [card]="card"></ui-card>
       </div>
-      <mat-card class="valve-management-card">
+      <!-- <mat-card class="valve-management-card">
         <mat-card-title class="valve-management-card-top" >Gestion des parcs</mat-card-title>
         <mat-card-content class="valve-management-card-content">
           <h2>tout les parcs</h2>
@@ -14,7 +14,7 @@
         <mat-card-footer class="valve-management-card-footer">
           <button mat-raised-button color="primary">Primary</button>
         </mat-card-footer>
-      </mat-card>
+      </mat-card> -->
 
     </div>
     <mat-card class="valve-chart-card">
@@ -22,7 +22,7 @@
     </mat-card>
   </mat-tab>
   <mat-tab label="Historique">
-    <mat-card class="valve-management-card">
+    <!-- <mat-card class="valve-management-card">
       <mat-card-title class="valve-management-card-top" >Gestion des parcs</mat-card-title>
       <mat-card-content class="valve-management-card-content">
         <h2>tout les parcs</h2>
@@ -32,7 +32,7 @@
       <mat-card-footer class="valve-management-card-footer">
         <button mat-raised-button color="primary">Primary</button>
       </mat-card-footer>
-    </mat-card>
+    </mat-card> -->
     <ui-table [table]="historic" downloadData="true"></ui-table>
   </mat-tab>
   <mat-tab label="Actions">
@@ -62,7 +62,7 @@
           </mat-card-footer>
         </mat-card>
     </div>
-      <mat-card class="valve-management-card">
+      <!-- <mat-card class="valve-management-card">
         <mat-card-title class="valve-management-card-top" >Gestion des parcs</mat-card-title>
         <mat-card-content class="valve-management-card-content">
           <h2>tout les parcs</h2>
@@ -72,7 +72,7 @@
         <mat-card-footer class="valve-management-card-footer">
           <button mat-raised-button color="primary">Primary</button>
         </mat-card-footer>
-      </mat-card>
+      </mat-card> -->
     </div>
     <ui-table [table]="historic"></ui-table>
   </mat-tab>

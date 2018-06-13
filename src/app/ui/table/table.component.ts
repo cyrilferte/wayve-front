@@ -36,7 +36,7 @@ export class TableComponent implements OnInit,  OnChanges {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name', 'type', 'mode', 'position', 'last_purge_date', 'last_error', ];
-  constructor( public valveService: ValveService, router: Router ) {
+  constructor( public valveService: ValveService, public router: Router ) {
 
   }
   ngOnInit() {
@@ -64,9 +64,6 @@ export class TableComponent implements OnInit,  OnChanges {
       table.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
-    public redirectToValve(id: string){
-      console.log(id)
-    }
 
     public onDownloadData(){
       console.log(this.table)
@@ -106,8 +103,8 @@ export class TableComponent implements OnInit,  OnChanges {
       }
      }
 
-    public clickOnEdit(){
-
+    public clickOnEdit(valve){
+      this.onEdit.emit(valve);
     }
 
     public clickOnPurge(){
@@ -118,6 +115,11 @@ export class TableComponent implements OnInit,  OnChanges {
       console.log('delete', id, this.table);
         this.reloadData();
         this.onDelete.emit(id);
+    }
+    redirectToValve(id){
+      console.log('lolo', id)
+      this.router.navigate(['/valve']);
+
     }
 
     ngOnChanges(changes: SimpleChanges) {

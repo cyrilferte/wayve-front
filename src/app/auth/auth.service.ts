@@ -6,7 +6,10 @@ import { HttpClient } from '@angular/common/http';
 
 const AUTH_QUERY = gql`
   query Auth($email: String!, $password: String! ) {
-    auth(email: $email, password: $password)
+    auth(email: $email, password: $password){
+      name
+      type
+    }
   }
 `;
 
@@ -28,7 +31,7 @@ export class AuthService {
         },
     })
     .valueChanges
-    
+
   }
 
 }

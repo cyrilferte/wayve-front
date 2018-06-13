@@ -1,4 +1,4 @@
-<div class="container-cards">
+<div class="container-cards" *ngIf="userService.user.type == 'admin' || userService.user.type == 'user'">
 
   <mat-card class="create-valve-card">
     <mat-card-title class="create-valve-card-top" >Create a valve</mat-card-title>
@@ -6,7 +6,7 @@
 
     </mat-card-content>
     <mat-card-footer class="create-valve-card-footer">
-      <button mat-raised-button color="primary" (click)="shouldRun=true; drawer.toggle()">Create</button>
+      <button mat-raised-button color="primary" (click)="shouldRun=true; drawer.toggle(); ; drawerShadow = true">Create</button>
     </mat-card-footer>
   </mat-card>
 
@@ -21,11 +21,13 @@
   </mat-card>
 </div>
 
-<ui-table [table]="historic" [setItems]="historic" #table ></ui-table>
+<ui-table *ngIf="userService.user.type == 'admin' || userService.user.type == 'user'" [table]="historic" [setItems]="historic" #table searchValve="true" (onDelete)="deleteValve($event)" (onEdit)="editValve($event)" showActions="true" ></ui-table>
+<ui-table *ngIf="userService.user.type == 'reader'" [table]="historic" [setItems]="historic" #table searchValve="true"  ></ui-table>
 
+<div class="shadow" *ngIf="drawerShadow" (click)="drawer.toggle(); drawerShadow = false"></div>
 <mat-drawer-container class="form-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" >
-    <form (ngSubmit)="onSubmit()" [formGroup]="form" >
+    <form (ngSubmit)="onSubmit()" [formGroup]="formValve" >
       <ng-container *ngIf="shouldRun">
         <h1>Create valve</h1>
         <div class="create-valve-form-container">
@@ -38,10 +40,10 @@
           </mat-form-field>
 
           <mat-form-field>
-            <mat-select placeholder="Type" formControlName="type" required>
-              <mat-option value="option">V1</mat-option>
-              <mat-option value="option">V2</mat-option>
-              <mat-option value="option">V3</mat-option>
+            <mat-select placeholder="Type" formControlName="type" [value]="formValve.controls.type.value" required>
+              <mat-option value="v1">V1</mat-option>
+              <mat-option value="v2">V2</mat-option>
+              <mat-option value="v3">V3</mat-option>
             </mat-select>
           </mat-form-field>
 
@@ -56,8 +58,8 @@
           <mat-form-field>
             <textarea  formControlName="localisation"  matInput placeholder="localisation"></textarea>
           </mat-form-field>
-          <div >{{form.valid}}</div>
-          <button mat-raised-button color="primary" [disabled]="!form.valid" >Créer</button>
+
+          <button mat-raised-button color="primary" [disabled]="!formValve.valid" >Créer</button>
         </div>
     </ng-container>
   </form>

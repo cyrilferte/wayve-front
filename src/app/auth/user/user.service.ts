@@ -14,10 +14,13 @@ export class UserService {
 
   public login(email: string, password: string) {
     this.authService.login(email, password).subscribe(data =>{
-        console.log(this.user, data)
-      if (data.data['auth'] === true){
+        console.log(this.user, data, data.data['auth'], data.data)
+      if (data.data['auth'].type ){
           this.user.isLogged = true;
-          console.log(this.user)
+          console.log('nik', this.user)
+          localStorage.setItem('type', data.data['auth'].type);
+          this.user.type = data.data['auth'].type;
+          this.user.isLogged = true;
           this.router.navigate(['/']);
       }
     })

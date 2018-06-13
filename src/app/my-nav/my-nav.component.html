@@ -11,20 +11,20 @@
     <mat-icon class="close-menu"(click)="drawer.toggle(); onToggle()" >close</mat-icon></mat-toolbar>
     <mat-toolbar color="primary"></mat-toolbar>
     <mat-nav-list class="icons-nav">
-      <a mat-list-item href="/"><mat-icon >home</mat-icon><p>Acceuil</p></a>
+      <a mat-list-item routerLink="/"><mat-icon >home</mat-icon><p>Acceuil</p></a>
       <!-- <a mat-list-item href="/equipements"><mat-icon >add</mat-icon><p>Equipements</p></a> -->
-      <a mat-list-item href="/imports"><mat-icon >devices</mat-icon><p>Import d'équipement</p></a>
-      <a mat-list-item href="/clients"><mat-icon >people_outline</mat-icon><p>Clients</p></a>
+      <a mat-list-item routerLink="/imports"><mat-icon >devices</mat-icon><p>Equipements</p></a>
+      <a mat-list-item routerLink="/clients"><mat-icon >people_outline</mat-icon><p>Clients</p></a>
       <!-- <a mat-list-item href="/settings"><mat-icon >person_outline</mat-icon><p>Droits et utilisateurs</p></a> -->
     </mat-nav-list>
   </mat-sidenav>
   <div class="min-nav-container">
     <mat-icon (click)="drawer.toggle(); onToggle()" *ngIf="!drawer.opened" class="hamburger-menu">menu</mat-icon>
     <mat-nav-list *ngIf="!drawer.opened">
-      <a mat-list-item href="/"><mat-icon  *ngIf="!drawer.opened">home</mat-icon></a>
+      <a mat-list-item routerLink="/"><mat-icon  *ngIf="!drawer.opened">home</mat-icon></a>
       <!-- <a mat-list-item href="/equipements"><mat-icon  *ngIf="!drawer.opened">add</mat-icon></a> -->
-      <a mat-list-item href="/imports"><mat-icon *ngIf="!drawer.opened">devices</mat-icon></a>
-      <a mat-list-item href="/clients"><mat-icon  *ngIf="!drawer.opened">people_outline</mat-icon></a>
+      <a mat-list-item routerLink="/imports"><mat-icon *ngIf="!drawer.opened">devices</mat-icon></a>
+      <a mat-list-item routerLink="/clients"><mat-icon  *ngIf="!drawer.opened">people_outline</mat-icon></a>
       <!-- <a mat-list-item href="/settings"><mat-icon  *ngIf="!drawer.opened">person_outline</mat-icon></a> -->
     </mat-nav-list>
   </div>

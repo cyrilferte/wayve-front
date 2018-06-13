@@ -12,7 +12,7 @@
   </form>
 </ng-container>
 <ng-container *ngIf="downloadData" >
-  <button mat-raised-button color="primary" (click)="onDownloadData()">Download</button>
+  <button mat-raised-button color="primary" class="download-data" (click)="onDownloadData()" >Download</button>
 </ng-container>
 <div class="mat-elevation-z8 margin-30-50">
   <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
@@ -20,50 +20,50 @@
     <!-- Id Column -->
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+      <mat-cell *matCellDef="let row" (click)="redirectToValve(row.id)">{{row.id}}</mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      <mat-cell *matCellDef="let row" (click)="redirectToValve(row.id)">{{row.name}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="type">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.type}}</mat-cell>
+      <mat-cell *matCellDef="let row" (click)="redirectToValve(row.id)">{{row.type}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="mode">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Mode</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.mode}}</mat-cell>
+      <mat-cell *matCellDef="let row" (click)="redirectToValve(row.id)">{{row.mode}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="position">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Position</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.position}}</mat-cell>
+      <mat-cell *matCellDef="let row" (click)="redirectToValve(row.id)">{{row.position}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="last_purge_date">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Last purge date</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.last_purge_date}}</mat-cell>
+      <mat-cell *matCellDef="let row" (click)="redirectToValve(row.id)">{{row.last_purge_date}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="last_error">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Last error</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.last_error}}</mat-cell>
+      <mat-cell *matCellDef="let row" (click)="redirectToValve(row.id)">{{row.last_error}}</mat-cell>
     </ng-container>
 
       <ng-container  matColumnDef="actions"  >
         <mat-header-cell *matHeaderCellDef mat-sort-header>Actions</mat-header-cell>
         <mat-cell *matCellDef="let row" >
           <!-- <button *ngIf="row.actions.includes('purge')" (click)="clickOnPurge()" mat-button>Purge</button>-->
-          <button *ngIf="row.actions &&row.actions.includes('edit')" (click)="clickOnEdit(row.id)" mat-button>Edit</button>
+          <button *ngIf="row.actions &&row.actions.includes('edit')" (click)="clickOnEdit(row)" mat-button>Edit</button>
           <button *ngIf="row.actions && row.actions.includes('delete')" (click)="clickOnDelete(row.id)" mat-button>Delete</button>
         </mat-cell>
       </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
   </mat-table>
 
   <mat-paginator #paginator

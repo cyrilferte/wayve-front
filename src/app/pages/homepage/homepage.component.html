@@ -17,4 +17,5 @@
   </div>
 </div>
 
-<ui-table [table]="historic" searchValve="true" (onDelete)="deleteValve($event)" (onEdit)="editValve($event)" showActions="true"></ui-table>
+<ui-table *ngIf="userService.user.type == 'admin' || userService.user.type == 'user'"   [table]="historic" searchValve="true" ></ui-table>
+<ui-table *ngIf="userService.user.type == 'reader'"  [table]="historic" searchValve="true" ></ui-table>

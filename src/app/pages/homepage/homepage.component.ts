@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValveService } from './../services/valve.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 import { ViewContainerRef } from '@angular/core';
+import { UserService } from '../../auth/user/user.service';
 
 @Component({
   selector: 'app-homepage',
@@ -29,14 +30,14 @@ export class HomepageComponent implements OnInit {
     {id: '9', name: 'Fluorine', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date(), actions: ['delete', 'edit']},
     {id: '10', name: 'Neon', type: 'v1', mode: 'automatique', position: 'ouvert', last_purge_date: Date(), actions: [ 'edit']},
   ];
-  constructor(public valveService: ValveService, private snackbar: MatSnackBar, public viewContainerRef: ViewContainerRef) {
+  constructor(public valveService: ValveService, private snackbar: MatSnackBar, public viewContainerRef: ViewContainerRef, public userService: UserService) {
     for (let card of this.cards){
       if (card.content === 'pieChart'){
         card.data = this.valveService.valveList
       }
     }
-    let config = new MatSnackBarConfig();
-    this.snackbar.open('Alerte Vanne n°42', "voir l'erreur", config);
+    // let config = new MatSnackBarConfig();
+    // this.snackbar.open('Alerte Vanne n°42', "voir l'erreur", config);
 
    }
 

@@ -23,6 +23,7 @@ import { ChartModule } from 'angular-highcharts';
 import { AuthModule } from './auth/auth.module';
 import { GraphQLModule } from "./graphql.module";
 import { ValveComponent } from './pages/valve/valve.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ValveComponent } from './pages/valve/valve.component';
     CardComponent,
     TableComponent,
     ValveComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
